@@ -1,0 +1,105 @@
+*{
+    margin: 0px;
+    padding: 0px;
+   
+}
+
+.img{
+    position: relative;
+    background-size: cover;
+    background-position: center;
+ 
+}
+.mask1{
+width: 50%;
+height: 50%;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+
+
+
+.section{
+    background-color: rgb(77,86,107);
+
+}
+
+.intro{
+    padding: 10vh;
+}
+
+#title{
+    float: left;
+    color: white;
+}
+
+#drop{
+    float: right; 
+}
+
+
+.col1{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+.card1{
+    margin: 2vh ;
+}
+
+
+.firstLine{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+
+.importance{
+    font-weight: bold;
+    border-radius: 10%;
+    padding: .2vw;
+}
+.image1{
+    border: 1px solid rgb(232,234,237);
+    padding: 5px;
+    height: 25vh;
+    object-fit: cover;
+}
+
+.card h5{
+    padding:2%
+}
+
+.text1{
+    min-height: 5em; 
+}
+
+.priority{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.level{
+    background-color:rgb(247,221,179) ;
+    font-weight: bold;
+    font-size: large;
+    border-radius: 50%;
+    padding: 1vh;
+ 
+    
+}
+
+.deadline{
+   text-align: left;
+
+}
+
+.buttons{
+    float: right;
+}
+
