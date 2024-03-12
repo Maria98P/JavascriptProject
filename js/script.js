@@ -4,7 +4,7 @@
     description;
     priorityLevel;
     deadline;
-    constructor(image, title, description, priorityLevel, deadline){
+    constructor(image, title, description, deadline,  priorityLevel = 0){
     
         this.image = image;
         this.title = title;
@@ -23,15 +23,15 @@
 
 
 
-var task1 = new Task ("images/bills.jpg", "Pay bills", "Pay your electricity bill.", 0, "10.03.24");
-var task2 = new Task ("images/dinner.jpg", "Make dinner", " Boil pasta and make a sauce.", 0, "10.03.24");
-var task3 = new Task ("images/groceries.jpg", "Go grocery shopping", "Get groceries from Spar. Then, get fresh vegetables from the farmers market.", 0, "10.03.24");
-var task4 = new Task ("images/vet.jpg", "Get Luna to the vet", "Get the cat to the vet for her vaccination appointment.", 0, "15.03.24");
-var task5 = new Task ("images/bday.jpg", "Plan Anton's birthday", "Order a cake and send out the invitations for his birthday.", 0, "27.05.24");
-var task6 = new Task ("images/callMom.jpg", "Call mom", "Make a videocall with mom and dad over the weekend.", 0, "16.03.24");
-var task7 = new Task ("images/dishes.jpg","Wash the dishes", "Load the dishwasher, unload it and wash the rest of the dishes.", 0, "10.03.24");
-var task8 = new Task ("images/study.jpg", "Study for the exam", "Revise chapters 1-4, make flashcards and study previous tests.", 0, "16.03.24");
-var task9 = new Task ("images/plants.jpg", "Work in the garden", "Water the plants and plant new seeds for the upcoming spring.", 0, "16.03.24");
+var task1 = new Task ("images/bills.jpg", "Pay bills", "Pay your electricity bill.", "10.03.24");
+var task2 = new Task ("images/dinner.jpg", "Make dinner", " Boil pasta and make a sauce.", "10.03.24");
+var task3 = new Task ("images/groceries.jpg", "Go grocery shopping", "Get groceries from Spar. Then, get fresh vegetables from the farmers market.", "10.03.24");
+var task4 = new Task ("images/vet.jpg", "Get Luna to the vet", "Get the cat to the vet for her vaccination appointment.", "15.03.24");
+var task5 = new Task ("images/bday.jpg", "Plan Anton's birthday", "Order a cake and send out the invitations for his birthday.", "27.05.24");
+var task6 = new Task ("images/callMom.jpg", "Call mom", "Make a videocall with mom and dad over the weekend.", "16.03.24");
+var task7 = new Task ("images/dishes.jpg","Wash the dishes", "Load the dishwasher, unload it and wash the rest of the dishes.", "10.03.24");
+var task8 = new Task ("images/study.jpg", "Study for the exam", "Revise chapters 1-4, make flashcards and study previous tests.", "16.03.24");
+var task9 = new Task ("images/plants.jpg", "Work in the garden", "Water the plants and plant new seeds for the upcoming spring.", "16.03.24");
 
 let tasks = [task1, task2, task3,task4, task5, task6, task7, task8, task9 ];
 createTasksInHtml();
@@ -49,14 +49,14 @@ function createTasksInHtml(){
                         <div class="firstLine">
                             <div class="importance" style="background-color: ${importanceColor(task.priorityLevel).color};"> ${importanceColor(task.priorityLevel).text}</div>
                             <div>
-                                <i class="bi bi-bookmark"></i>
-                                <i class="bi bi-three-dots-vertical"></i> 
+                               <button class="edit" ><i class="bi bi-pen "></i> </button>
+                                <i class="bi bi-bookmark"></i> 
                             </div>
                         </div>
             
                         <img class="card-img image1" src="${task.image} ">
                         <h5 class="card-title">${task.title}</h5>
-                        <p class="card-text text1">${task.description}</p>
+                        <p class="card-text text1" id="editableText" >${task.description}</p>
                         <hr>
                         <div class="priority"> 
                             <p class="sth">
@@ -92,6 +92,8 @@ function createTasksInHtml(){
 
     increaseButton();
     decreaseButton();
+    editTasks();
+  
         
         
     let deleteButtons = document.querySelectorAll(".delete");
@@ -195,3 +197,32 @@ function sortTasksAplhabetically(){
 }
 
 document.getElementById("alphabetically").addEventListener("click",sortTasksAplhabetically);
+
+
+function editTasks (){
+    
+    let editButtons = document.querySelectorAll(".edit");
+    
+    editButtons.forEach((element, i) => { 
+     let isEditing = false;
+            element.addEventListener("click", function (){
+                const cardBody =element.closest('.card-body');
+                const editableText =  cardBody.querySelector(".text1");
+                if (!isEditing){
+                    editableText.contentEditable = true; 
+                    editableText.focus();
+                    isEditing = true;
+                    element.innerHTML = '<i class="bi bi-check"></i>'; 
+                } else {
+                    tasks[i].description = editableText.textContent;
+                    editableText. contentEditable = false;
+                    isEditing =false;
+                    element.innerHTML = '<i class="bi bi-pencil"></i>';
+                }
+
+
+        })
+    });
+}
+
+editTasks();
