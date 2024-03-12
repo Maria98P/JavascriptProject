@@ -205,22 +205,20 @@ function editTasks (){
     
     editButtons.forEach((element, i) => { 
      let isEditing = false;
-            element.addEventListener("click", function (){
-                const cardBody =element.closest('.card-body');
-                const editableText =  cardBody.querySelector(".text1");
-                if (!isEditing){
-                    editableText.contentEditable = true; 
-                    editableText.focus();
-                    isEditing = true;
-                    element.innerHTML = '<i class="bi bi-check"></i>'; 
-                } else {
-                    tasks[i].description = editableText.textContent;
-                    editableText. contentEditable = false;
-                    isEditing =false;
-                    element.innerHTML = '<i class="bi bi-pencil"></i>';
-                }
-
-
+     element.addEventListener("click", function (){
+        const cardBody =element.closest('.card-body');
+        const editableText =  cardBody.querySelector(".text1");
+        if (!isEditing){
+            editableText.contentEditable = true; 
+            editableText.focus();
+            isEditing = true;
+            element.innerHTML = '<i class="bi bi-check"></i>'; 
+            } else {
+            tasks[i].description = editableText.textContent;
+            editableText. contentEditable = false;
+            isEditing =false;
+            element.innerHTML = '<i class="bi bi-pencil"></i>';
+            }
         })
     });
 }
